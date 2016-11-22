@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="" ng-app="app">
+<head>
+	<meta charset="utf-8"> 
+	<title>GitHub Profiler</title>
+	<!-- Using Bootstrap CSS-->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+	<!-- Main Controller -->
+	<div class="container" ng-controller="GithubController as home">
+		<div class="panel">
+			<div class="panel-heading">
+				<div class="well">
+					<h1 class="text-default"><b>GitHub Profiler<b></h1>
+					<h4>Find out information about any GitHub user!</h4>
+				</div>
+			</div>
+			<div class="panel-body input-group">
+      			<input type="text" class="form-control" ng-model="home.username">
+      			<span class="input-group-btn">
+        			<button class="btn btn-default" ng-click="home.callGithubApi(home.username)" type="button">Go!</button>
+      			</span>
+			</div>
+		  		<div class="row" id='details' style="visibility: hidden">
+		  			<div class="col-md-3">
+		  				<a ng-href={{home.user.html_url}}>
+		  				<img ng-src={{home.user.avatar_url}} class="img-circle img-responsive text-center">
+		  				</a>
+		  				<p></p>
+		  				<a ng-href={{home.user.html_url}}>
+						<div class="text-center medium">
+							<p><b>{{home.user.name}}</b> {{home.user.login}}</p> 
+							</a>
+							<p>{{home.user.location}}</p> 
+							<p ng-class=home.hireableColor>{{home.user.hireable}}</p> 
+							<p>Member since {{home.user.created_at | date: 'longDate'}}</p>
+					</div>
+				</div>
+	  			<div class="col-md-3 well well-lg text-center">	  	
+	  				<h5>Followers</h5>
+	  				<p>{{home.user.followers}}</p>
+	  			</div>
+	  			<div class="col-md-3 well well-lg text-center">
+	  				<h5>Following</h5>
+	  				<p>{{home.user.following}}</p>
+	  			</div>
+	  			<div class="col-md-3 well well-lg text-center">
+	  				<h5>Public Repositories</h5>
+	  				<p>{{home.user.public_repos}}</p>
+	  			</div>
+		</div>	
+	</div>
+	<!-- Angular.js -->
+	<script src="bower_components/angular/angular.js"></script>
+	<!-- jQuery -->
+	<script src="//code.jquery.com/jquery.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>  
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="app/app.module.js"></script>
+	<script src="app/Home/home.controller.js"></script>
+</body>
+</html>
